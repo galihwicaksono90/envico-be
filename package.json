@@ -1,0 +1,36 @@
+{
+  "name": "envico-be",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.ts"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.12",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^18.7.6",
+    "@types/react": "^18.0.17",
+    "prisma": "4.2.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@prisma/client": "4.2.1",
+    "@types/bcrypt": "^5.0.0",
+    "@types/formidable": "^2.0.5",
+    "@types/http-errors": "^1.8.2",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "formidable": "^2.0.1",
+    "http-errors": "^2.0.0",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.9.1"
+  }
+}
