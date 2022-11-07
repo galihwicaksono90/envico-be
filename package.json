@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.ts"
+    "dev": "nodemon index.ts",
+    "prisma": {
+      "seed": "ts-node ./prisma/index/seed.ts"
+    }
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3",
@@ -12,6 +15,8 @@
     "@types/jsonwebtoken": "^8.5.8",
     "@types/multer": "^1.4.7",
     "@types/node": "^18.7.6",
+    "@types/node-fetch": "^2.6.2",
+    "@types/nodemailer": "^6.4.6",
     "@types/react": "^18.0.17",
     "prisma": "4.2.1",
     "typescript": "^4.7.4"
@@ -30,6 +35,8 @@
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.5-lts.1",
+    "node-fetch": "2",
+    "nodemailer": "^6.8.0",
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1"
   }

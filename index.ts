@@ -2,14 +2,15 @@ import cors from "cors";
 import express, { Request, Response, NextFunction } from "express";
 import BusinessRouter from "./src/Controllers/BusinessController";
 import AuthRouter from "./src/Controllers/AuthController";
-import createError from "http-errors";
+import AdminRouter from "./src/Controllers/AdminController";
+import MailRouter from "./src/Controllers/MailController";
 import cookieParser from "cookie-parser";
 
 export type ErrorType = Error & { status: number };
 
 const app = express();
 
-const port = 4000;
+const port = process.env.port || 4000;
 
 app.use(cookieParser());
 
@@ -22,6 +23,10 @@ app.use(express.static("public"));
 app.use(BusinessRouter);
 
 app.use(AuthRouter);
+
+app.use(AdminRouter);
+
+app.use(MailRouter);
 
 // app.use(async (_req, res, next) => {
 //   next(new createError.NotFound("This route does not exist"));

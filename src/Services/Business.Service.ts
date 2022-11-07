@@ -1,7 +1,7 @@
 import { Request } from "express";
 import formidable from "formidable";
 import { PrismaClient } from "@prisma/client";
-import { AddBusinessDTO, addBusinessSchema } from "../dto/BusinessDTO";
+//import { AddBusinessDTO, addBusinessSchema } from "../dto/BusinessDTO";
 import createError from "http-errors";
 import path from "path";
 import fs from "fs";
@@ -29,16 +29,20 @@ export const addBusiness = async (req: Request): Promise<any> => {
       throw new createError.Conflict(`The title "${title}" is already taken`);
     }
 
-    const business = await prisma.business.create({
-      data: {
-        title: fields.title as string,
-        description: fields.description as string,
-        content: fields.content as string,
-        asSlide: fields.asSlide === "true" ? true : false,
-      },
-    });
+    try {
+      const business = await prisma.business.create({
+        data: {
+          title: fields.title as string,
+          description: fields.description as string,
+          content: fields.content as string,
+          asSlide: fields.asSlide === "true" ? true : false,
+        },
+      });
 
-    return business;
+      return business;
+    } catch (error) {
+      throw new createError.BadRequest("Error creating new business");
+    }
   });
 };
 
@@ -49,11 +53,9 @@ export const editBusiness = async (req: Request, id: string): Promise<any> => {
   });
 
   form.parse(req, async (err, fields, files) => {
-    // if (err) {
-    //   console.log({ err });
-    // }
-
-    const { title } = fields;
+    if (err) {
+      console.log({ err });
+    }
 
     const doesExist = await prisma.business.findUnique({
       where: { id },

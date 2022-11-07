@@ -24,7 +24,7 @@ AuthRouter.get("/me", verifyAccessToken, async (req, res, next) => {
 
 AuthRouter.post("/login", async (req, res, next) => {
   try {
-    const { accessToken, refreshToken } = await login(req.body);
+    const { accessToken, refreshToken, admin } = await login(req.body);
 
     res.cookie("refresh_token", refreshToken, {
       maxAge: 60 * 60 * 1000,
@@ -32,7 +32,7 @@ AuthRouter.post("/login", async (req, res, next) => {
       secure: false,
     });
 
-    res.send({ accessToken });
+    res.send({ accessToken, admin });
   } catch (error) {
     next(error);
   }
